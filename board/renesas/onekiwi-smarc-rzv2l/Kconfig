@@ -1,0 +1,16 @@
+if TARGET_ONEKIWI_SMARC_RZV2L
+
+config SYS_SOC
+	default "rmobile"
+
+config SYS_BOARD
+	default "onekiwi-smarc-rzv2l"
+
+config SYS_VENDOR
+	default "renesas"
+
+config SYS_CONFIG_NAME
+	default "onekiwi-smarc-rzv2l"
+
+endif
+
