@@ -934,6 +934,7 @@ dtb-$(CONFIG_RCAR_GEN3) += \
 	smarc-rzg2ul.dtb \
 	rzg3s-dev.dtb \
 	smarc-rzg3s.dtb \
+	rzv2l-som-onekiwi.dtb \
 	onekiwi-smarc-rzv2l.dtb
 
 ifdef CONFIG_RCAR_GEN3
