@@ -69,7 +69,9 @@
 	"emmcload=ext4load mmc 0:2 0x48080000 boot/Image;ext4load mmc 0:2 0x48000000 boot/rzv2l-som-onekiwi.dtb;run prodemmcbootargs \0" \
 	"sd1load=ext4load mmc 1:2 0x48080000 boot/Image;ext4load mmc 1:2 0x48000000 boot/rzv2l-som-onekiwi.dtb;run prodsdbootargs \0" \
 	"usbload=ext4load usb 0:2 0x48080000 boot/Image;ext4load usb 0:2 0x48000000 boot/rzv2l-som-onekiwi.dtb;run produsbbootargs \0" \
+	"bootusb=usb start; run usbload; run bootimage \0" \
 	"bootcmd_check=if mmc dev 1; then run sd1load; else run emmcload; fi \0"
+	
 
 #define CONFIG_BOOTCOMMAND	"env default -a;run bootcmd_check;run bootimage"
 
