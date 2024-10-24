@@ -33,6 +33,7 @@
 
 };
 
+/*
 &pinctrl {
 	eth0_pins: eth0 {
 		pinmux = <RZV2L_PINMUX(20, 0, 1)>,
@@ -55,7 +56,7 @@
 				<RZV2L_PINMUX(28, 0, 1)>,
 				<RZV2L_PINMUX(28, 1, 1)>;
 	};
-};
+};*/
 
 &xinclk {
 	clock-frequency = <24000000>;
