@@ -59,6 +59,43 @@
 
 /* ENV setting */
 
+#define USB_FLASHER_PART_CMD \
+	"setexpr filebatchsize 0x20000000; " \
+	"setexpr fileoffset 0; "\
+	"setexpr mmcwriteblkinc 0x100000; " \
+	"setexpr mmcwriteblkaddr 0; " \
+	"setexpr filebatches ${filesize} / ${filebatchsize}; " \
+	"setexpr filebatches ${filebatches} + 1; " \
+	"while test ${filebatches} > 0; do " \
+		"load usb 0 $loadaddr somlabs-image-visionsom-${soc}-cb.wic $filebatchsize $fileoffset; " \
+		"setexpr writesize ${filesize} / 0x200; " \
+		"mmc write $loadaddr $mmcwriteblkaddr $writesize; " \
+		"setexpr fileoffset $fileoffset + $filebatchsize; " \
+		"setexpr mmcwriteblkaddr $mmcwriteblkaddr + $mmcwriteblkinc; " \
+		"setexpr filebatches ${filebatches} - 1; " \
+		"done; "
+
+#define USB_FLASHER_CMD \
+	"setenv soc " SOC_TYPE "; " \
+	"if usb start; then " \
+		"mmc dev 0; " \
+		"if size usb 0 somlabs-image-visionsom-${soc}-cb.wic; then " \
+			USB_FLASHER_PART_CMD \
+		"elif load usb 0 $loadaddr somlabs-image-visionsom-${soc}-cb.simg; then " \
+			"mmc swrite $loadaddr 0; " \
+		"fi; " \
+		"if load usb 0 $loadaddr fip-visionsom-${soc}-cb.bin; then " \
+			"setexpr writesize ${filesize} / 0x200; " \
+			"mmc dev 0 1; " \
+			"mmc write $loadaddr 0x100 $writesize; " \
+		"fi; " \
+		"if load usb 0 $loadaddr bl2_bp-visionsom-${soc}-cb.bin; then " \
+			"setexpr writesize ${filesize} / 0x200; " \
+			"mmc dev 0 1; " \
+			"mmc write $loadaddr 0x1 $writesize; " \
+		"fi; " \
+	"fi; "
+
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	"usb_pgood_delay=2000\0" \
 	"bootm_size=0x10000000 \0" \
@@ -67,7 +104,8 @@
 	"bootimage=unzip 0x4A080000 0x48080000; booti 0x48080000 - 0x48000000 \0" \
 	"emmcload=ext4load mmc 0:2 0x48080000 boot/Image;ext4load mmc 0:2 0x48000000 boot/r9a07g054l2-smarc.dtb;run prodemmcbootargs \0" \
 	"sd1load=ext4load mmc 1:2 0x48080000 boot/Image;ext4load mmc 1:2 0x48000000 boot/r9a07g054l2-smarc.dtb;run prodsdbootargs \0" \
-	"bootcmd_check=if mmc dev 1; then run sd1load; else run emmcload; fi \0"
+	"bootcmd_check=if mmc dev 1; then run sd1load; else run emmcload; fi \0"\
+	"usbflash=" USB_FLASHER_CMD "reset; \0"
 
 #define CONFIG_BOOTCOMMAND	"env default -a;run bootcmd_check;run bootimage"
 
