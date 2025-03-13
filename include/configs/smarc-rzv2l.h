@@ -76,7 +76,6 @@
 		"done; "
 
 #define USB_FLASHER_CMD \
-	"setenv soc " SOC_TYPE "; " \
 	"if usb start; then " \
 		"mmc dev 0; " \
 		"if size usb 0 somlabs-image-visionsom-${soc}-cb.wic; then " \
