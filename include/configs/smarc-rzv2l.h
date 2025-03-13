@@ -67,7 +67,7 @@
 	"setexpr filebatches ${filesize} / ${filebatchsize}; " \
 	"setexpr filebatches ${filebatches} + 1; " \
 	"while test ${filebatches} > 0; do " \
-		"load usb 0 $loadaddr somlabs-image-visionsom-${soc}-cb.wic $filebatchsize $fileoffset; " \
+		"load usb 0 $loadaddr core-image-weston-smarc-rzv2l.wic $filebatchsize $fileoffset; " \
 		"setexpr writesize ${filesize} / 0x200; " \
 		"mmc write $loadaddr $mmcwriteblkaddr $writesize; " \
 		"setexpr fileoffset $fileoffset + $filebatchsize; " \
@@ -78,9 +78,9 @@
 #define USB_FLASHER_CMD \
 	"if usb start; then " \
 		"mmc dev 0; " \
-		"if size usb 0 somlabs-image-visionsom-${soc}-cb.wic; then " \
+		"if size usb 0 core-image-weston-smarc-rzv2l.wic; then " \
 			USB_FLASHER_PART_CMD \
-		"elif load usb 0 $loadaddr somlabs-image-visionsom-${soc}-cb.simg; then " \
+		"elif load usb 0 $loadaddr core-image-weston-smarc-rzv2l.simg; then " \
 			"mmc swrite $loadaddr 0; " \
 		"fi; " \
 		"if load usb 0 $loadaddr fip-visionsom-${soc}-cb.bin; then " \
