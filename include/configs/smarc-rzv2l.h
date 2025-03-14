@@ -83,16 +83,6 @@
 		"elif load usb 0 $loadaddr core-image-weston-smarc-rzv2l.simg; then " \
 			"mmc swrite $loadaddr 0; " \
 		"fi; " \
-		"if load usb 0 $loadaddr fip-visionsom-${soc}-cb.bin; then " \
-			"setexpr writesize ${filesize} / 0x200; " \
-			"mmc dev 0 1; " \
-			"mmc write $loadaddr 0x100 $writesize; " \
-		"fi; " \
-		"if load usb 0 $loadaddr bl2_bp-visionsom-${soc}-cb.bin; then " \
-			"setexpr writesize ${filesize} / 0x200; " \
-			"mmc dev 0 1; " \
-			"mmc write $loadaddr 0x1 $writesize; " \
-		"fi; " \
 	"fi; "
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
