@@ -45,7 +45,7 @@
 &pinctrl {
 	sdhi1_pins: sd1 {
 		sd1_cd {
-			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
+			pinmux = <RZV2L_PINMUX(19, 0, 1)>; /* SD1_CD */
 		};
 	};
 
@@ -134,21 +134,21 @@
 };
 
 &spibsc {
-        num-cs = <1>;
-        status = "okay";
-        spi-max-frequency = <40000000>;
-        #address-cells = <1>;
-        #size-cells = <0>;
-        flash0: spi-flash@0 {
-                #address-cells = <1>;
-                #size-cells = <1>;
-                compatible = "spi-flash", "jedec,spi-nor";
-                spi-max-frequency = <40000000>;
-                spi-tx-bus-width = <1>;
-                spi-rx-bus-width = <1>;
-                reg = <0>;
-                status = "okay";
-        };
+	num-cs = <1>;
+	status = "okay";
+	spi-max-frequency = <40000000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	flash0: spi-flash@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "spi-flash", "jedec,spi-nor";
+		spi-max-frequency = <40000000>;
+		spi-tx-bus-width = <1>;
+		spi-rx-bus-width = <1>;
+		reg = <0>;
+		status = "okay";
+	};
 };
 
 &ehci0 {
