@@ -98,8 +98,8 @@
 	*/
 	vmmc-supply = <&v3v3>;
 	bus-width = <4>;
-	cd-gpios = <&pinctrl RZG2L_GPIO(19, 0) GPIO_ACTIVE_LOW>;
-	cd-gpios = <&pinctrl RZG2L_GPIO(19, 0) GPIO_ACTIVE_LOW>;
+	cd-gpios = <&pinctrl RZV2L_GPIO(19, 0) GPIO_ACTIVE_LOW>;
+	//cd-gpios = <&pinctrl RZG2L_GPIO(19, 0) GPIO_ACTIVE_LOW>;
 	status = "okay";
 };
 
