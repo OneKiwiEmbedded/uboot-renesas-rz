@@ -11,7 +11,6 @@
 #include "r9a07g054l.dtsi"
 #include "r9a07g054l-u-boot.dtsi"
 #include <dt-bindings/pinctrl/rzv2l-pinctrl.h>
-#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
 
 / {
 	model = "smarc-rzv2l";
