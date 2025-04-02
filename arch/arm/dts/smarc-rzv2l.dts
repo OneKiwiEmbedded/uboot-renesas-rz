@@ -43,6 +43,12 @@
 };
 
 &pinctrl {
+	sdhi1_pins: sd1 {
+		sd1_cd {
+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
+		};
+	};
+
 	eth0_pins: eth0 {
 		pinmux = <RZV2L_PINMUX(20, 0, 1)>,
 				<RZV2L_PINMUX(20, 1, 1)>,
@@ -95,9 +101,13 @@
 	 * The SD1_PWR_EN pin is associated with P39_2.
 	 * A HIGH signal on SD1_PWR_EN will enable supply voltage for SD card.
 	*/
-	vmmc-supply = <&v3v3>;
-	bus-width = <4>;
+	//vmmc-supply = <&v3v3>;
+	//bus-width = <4>;
 	//cd-gpios = <&pinctrl RZG2L_GPIO(19, 0) GPIO_ACTIVE_LOW>;
+	//status = "okay";
+	pinctrl-0 = <&sdhi1_pins>;
+	pinctrl-names = "default";
+	bus-width = <4>;
 	status = "okay";
 };
 
