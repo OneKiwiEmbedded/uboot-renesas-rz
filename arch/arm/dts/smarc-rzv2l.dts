@@ -31,6 +31,14 @@
 		reg = <0 0x48000000 0 0x78000000>;
 	};
 
+	v3v3: v3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "v3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+	};
+
 };
 
 &pinctrl {
@@ -86,6 +94,7 @@
 	 * The SD1_PWR_EN pin is associated with P39_2.
 	 * A HIGH signal on SD1_PWR_EN will enable supply voltage for SD card.
 	*/
+	vmmc-supply = <&v3v3>;
 	bus-width = <4>;
 	status = "okay";
 };
